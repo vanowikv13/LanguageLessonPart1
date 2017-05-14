@@ -13,7 +13,7 @@ struct word {
 	string polish;
 	string germany;
 };
-void PutFromFile(vector<word>& wsk,string fileName) {
+void PutFromFile(vector<word>& wsk, string fileName) {
 	fstream file;
 	file.open(fileName, ios::in);
 	string xd;
@@ -39,7 +39,7 @@ void PutFromFile(vector<word>& wsk,string fileName) {
 
 void test(vector<word> arr, int size) {
 	string answer;
-	int point=0, index;
+	int point = 0, index;
 	srand(time(nullptr));
 	bool *tab = new bool[arr.size()];
 	for (int i = 0; i < arr.size(); i++) tab[i] = false;
@@ -50,23 +50,43 @@ void test(vector<word> arr, int size) {
 				tab[index] = true;
 				break;
 			}
-		cout << arr[index].polish <<" : ";
-		getline(cin,answer);
+		cout << arr[index].polish << " : ";
+		getline(cin, answer);
 		if (answer == arr[index].germany)
 			point++;
 	}
-	cout << point <<"/"<<size<< endl;
+	cout << point << "/" << size << endl;
 
 
 }
 
+string setFileName() {
+	cout << "set file name ";
+	string file;
+	getline(cin, file);
+	return file;
+}
+
+void CinTheDataForTest(int HowM) {
+	fstream file;
+	string filex = setFileName(), data;
+	if (filex.size() > 0)
+		file.open(filex, ios::out | ios::app);
+	for (int i = 0; i < HowM; i++) {
+		cout << "set things to write into file ";
+		getline(cin, data);
+		file << data + "\n";
+	}
+	
+}
 
 int main()
 {
-	vector<word> words;
-	PutFromFile(words, "word.txt");
-	test(words, 5);
+	//vector<word> words;
+	//PutFromFile(words, "word.txt");
+	//test(words, 5);
+	CinTheDataForTest(2);
 	system("pause");
-    return 0;
+	return 0;
 }
 
